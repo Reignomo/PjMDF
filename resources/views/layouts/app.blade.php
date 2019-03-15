@@ -14,6 +14,7 @@
         .container{
             margin-top:80px;
             margin-bottom:80px;
+            min-height:445px;
         }
     </style>
     <body>
@@ -35,7 +36,7 @@
     <!-- Grid column -->
     <div class="col-md-6 mt-md-0 mt-3">
       <!-- Content -->
-      <h5 class="text-uppercase">Footer Content</h5>
+      <h5 class="text-uppercase">Modern Family</h5>
       <p>Modern Family é uma aplicação desenvolvida pelo grupo IBico Solutins.</p>
     </div>
     <!-- Grid column -->

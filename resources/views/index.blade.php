@@ -1,4 +1,4 @@
-@extends('layouts.app', ["current" => "home"])
+@extends('layouts.app', ["current" => "index"])
 @section('body')
 <style>
     #banner{
@@ -96,7 +96,9 @@
             <h4 class="text-primary">Gerencie as atividade</h4>
             <p class="text-secondary">Na Modern Family você pode gerenciar suas tarefas familhares fácil e rapido.</p>
         </div>
-
+    </div>
+    <div class="text-center">
+        <p class="text-secondary" style="margin-top:30px;">Todas estas questões, devidamente ponderadas, levantam dúvidas sobre se o fenômeno da Internet garante a contribuição de um grupo importante na determinação do levantamento das variáveis envolvidas. Gostaria de enfatizar que o início da atividade geral de formação de atitudes exige a precisão e a definição dos procedimentos normalmente adotados.</p>
     </div>
 </div>
 @endSection
