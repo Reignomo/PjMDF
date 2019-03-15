@@ -27,7 +27,7 @@
             </mains>
         </div>
         <!-- Footer -->
-<footer class="page-footer font-small bg-info pt-4">
+<footer class="page-footer font-small bg-info pt-4 text-white">
 <!-- Footer Links -->
 <div class="container-fluid text-center text-md-left">
   <!-- Grid row -->
@@ -36,7 +36,7 @@
     <div class="col-md-6 mt-md-0 mt-3">
       <!-- Content -->
       <h5 class="text-uppercase">Footer Content</h5>
-      <p>Here you can use rows and columns here to organize your footer content.</p>
+      <p>Modern Family é uma aplicação desenvolvida pelo grupo IBico Solutins.</p>
     </div>
     <!-- Grid column -->
     <hr class="clearfix w-100 d-md-none pb-3">
@@ -44,18 +44,15 @@
     <div class="col-md-3 mb-md-0 mb-3">
         <!-- Links -->
         <h5 class="text-uppercase">Social</h5>
-        <ul class="list-unstyled">
+        <ul class="list-unstyled" style="font-size:32px;padding-left:10px;">
           <li>
-            <a href="#!">Link 1</a>
+            <a href="#"><span class="fab fa-facebook-square"></span></a>
           </li>
           <li>
-            <a href="#!">Link 2</a>
+            <a href="#"><span class="fab fa-github"></span></a>
           </li>
           <li>
-            <a href="#!">Link 3</a>
-          </li>
-          <li>
-            <a href="#!">Link 4</a>
+            <a href="#"><span class="fab fa-instagram"></span></a>
           </li>
         </ul>
       </div>
@@ -71,6 +68,9 @@
             <li>
                 (13)997125069
             </li>
+            <li>
+              <img src="/img/icon-brasil.png">
+            </li>
         </ul>
       </div>
       <!-- Grid column -->
@@ -80,7 +80,7 @@
 <!-- Footer Links -->
 <!-- Copyright -->
 <div class="footer-copyright text-center py-3 bg-primary">© 2018 Copyright: IBico Solutions
-  <a href="https://mdbootstrap.com/education/bootstrap/"> www.ibico.com.br</a>
+  <a href="www.ibico.com.br"> www.ibico.com.br</a>
 </div>
 <!-- Copyright -->
 </footer>
