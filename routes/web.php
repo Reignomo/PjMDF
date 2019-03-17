@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('index');
 });
 
+
+Route::get('/grupoFamiliar','ControllerFamilia@index');
+Route::get('/addGrupoFamiliar','ControllerFamilia@create');
 Auth::routes();
 
 

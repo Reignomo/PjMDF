@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Familia;
+use Illuminate\Support\Facades\Auth;
 
 class ControllerFamilia extends Controller
 {
@@ -13,7 +15,11 @@ class ControllerFamilia extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::check()){
+            $familias = Familia::all();
+            return view('grupoFamiliar', compact('familias'));
+        }
+        return redirect('/'); 
     }
 
     /**
@@ -23,7 +29,10 @@ class ControllerFamilia extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::check()){
+            return view('addGrupoFamiliar');
+        }
+        return redirect('/');   
     }
 
     /**
@@ -34,7 +43,18 @@ class ControllerFamilia extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Auth::check()){
+            $familias = Familia::all();
+            $familia = new Familia();
+            if($familias < $familia->qtMax){
+                $familia->nome = $request->input('nomeFamilia');
+                $familia->f_id_user = Auth::user()->id;
+                $familia->save();
+                redirect('/grupoFamiliar');
+            }
+         
+        }
+        return redirect('/'); 
     }
 
     /**

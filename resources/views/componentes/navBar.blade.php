@@ -13,7 +13,8 @@
       <li @if($current =="Familias") class="nav-item active dropdown" @else class="nav-item dropdown" @endif>
         <a class="nav-link dropdown-toggle" id="linkClientes" role="button" data-toggle="dropdown" href="#">Familia</a>
         <div class="dropdown-menu" aria-labelledby="linkClientes">
-          <a class="dropdown-item" href="/clientes">Adicionar grupo familiar</a>
+          <a class="dropdown-item" href="/grupoFamiliar">Grupos familiares</a>
+          <a class="dropdown-item" href="/addGrupoFamiliar">Adicionar grupo familiar</a>
           <a class="dropdown-item" href="/cliente/novo">Gerenciar atividades</a>
         </div>
       </li>
