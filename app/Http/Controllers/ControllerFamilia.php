@@ -53,6 +53,10 @@ class ControllerFamilia extends Controller
                 $familia->save();
                 redirect('/grupoFamiliar');
             }
+            else{
+                $limitMax = true;
+                return redirect('/addGrupoFamiliar/{limitMax}');
+            }
          
         }
         return redirect('/'); 

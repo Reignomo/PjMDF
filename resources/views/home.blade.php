@@ -27,15 +27,15 @@
     <div class="jumbotron">
          <div class="card-deck">
          @foreach($familias as $familia)
-            <div class="card border-secondary mb-3 card-familia  full" style="max-width: 18rem;">
+            <div class="card border-secondary mb-3 card-familia full centered" style="max-width: 18rem;">
                 <div class="card-body vertical-center">
                     <a href=""class="centered card-text text-secondary">{{ $familia->nome }}</a>
                 </div>
             </div>
             @endforeach
             @if(count($familias) < 3)
-            <div class="card border-secondary mb-3 card-familia  full" style="max-width: 18rem;">
-                <div class="card-body text-secondary vertical-center">
+            <div class="card border-secondary mb-3 card-familia  full centered" style="max-width: 18rem;">
+                <div class="card-body text-secondary vertical-center centered">
                     <a href=""class="centered card-text text-secondary"><i class="fas fa-plus" style="font-size:60px;"></i></a>
                 </div>
             </div>

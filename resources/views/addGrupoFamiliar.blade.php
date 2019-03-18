@@ -62,6 +62,13 @@ body
 
 </style>
 @section('body')
+<div class=" col-xs-12 col-md-6 centered">
+    @if(isset($limitMax))
+    <div class="alert alert-warning border" role="alert">
+    Você atingiu o número máximo de grupos familiares, <a href="/" class="alert-link">clique aqui</a> para excluir uma familia existente.
+    </div>
+    @endif
+    </div>
     <h1 class="text-primary shadow-text text-center">Adicione um novo grupo familiar</h1>
         <div class="card col-xs-12 col-md-6 centered">
             <div class="card-body">
@@ -105,6 +112,7 @@ body
             </div>
         </div>
     </div>
+    
 <script>
 $(".imgAdd").click(function(){
   $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');

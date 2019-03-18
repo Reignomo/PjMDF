@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/addGrupoFamiliar/{limitMax}', function ($limitMax) {
+    return view('addGrupoFamiliar', compact('limitMax'));
+});
 
 Route::get('/grupoFamiliar','ControllerFamilia@index');
 Route::get('/addGrupoFamiliar','ControllerFamilia@create');
