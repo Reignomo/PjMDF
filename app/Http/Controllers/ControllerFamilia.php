@@ -16,8 +16,7 @@ class ControllerFamilia extends Controller
     public function index()
     {
         if(Auth::check()){
-            $familias = Familia::all();
-            return view('grupoFamiliar', compact('familias'));
+            return view('grupoFamiliar');
         }
         return redirect('/'); 
     }
@@ -46,9 +45,11 @@ class ControllerFamilia extends Controller
         if(Auth::check()){
             $familias = Familia::all();
             $familia = new Familia();
-            if($familias < $familia->qtMax){
+            if(count($familias) < $familia->qtMax){
                 $familia->nome = $request->input('nomeFamilia');
-                $familia->f_id_user = Auth::user()->id;
+                $familia->lifestyle = $request->input('idLifestyle');
+                $familia->descricao = $request->input('descricaoFamilia');
+                $familia->f_user_creator_id = Auth::user()->id;
                 $familia->save();
                 redirect('/grupoFamiliar');
             }

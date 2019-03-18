@@ -18,7 +18,7 @@ class CreateMembrosTable extends Migration
             $table->integer('m_user_id')->unsigned();
             $table->foreign('m_user_id')->references('id')->on('users');
             $table->integer('m_familia_id')->unsigned();
-            $table->foreign('m_familia_id')->references('id')->on('familia');
+            $table->foreign('m_familia_id')->references('id')->on('familias');
             $table->timestamps();
         });
     }

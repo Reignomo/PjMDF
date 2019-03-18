@@ -1,4 +1,5 @@
 <?php
+use App\Familia;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +13,8 @@
 
 Route::get('/', function () {
     if(Auth::check()){
-        return view('home');
+        $familias = Familia::all();
+        return view('home', compact('familias'));
     }
     return view('index');
 });
@@ -20,6 +22,7 @@ Route::get('/', function () {
 
 Route::get('/grupoFamiliar','ControllerFamilia@index');
 Route::get('/addGrupoFamiliar','ControllerFamilia@create');
+Route::post('/addGrupoFamiliar/insert','ControllerFamilia@store');
 Auth::routes();
 
 

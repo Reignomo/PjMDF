@@ -17,7 +17,7 @@ class CreateMedalhasTable extends Migration
             $table->increments('id');
             $table->integer('pontuacao'); #o usúario ganha medalhas de acordo com a quantidade de pontuações - Pontuação 0-50: Aspirante - Pontuação 50-100: Guerreiro - Pontuação 100-150 Perito - Pontuação: 150-200 Mestre
             $table->integer('m_user_id')->unsigned();
-            $table->foreign('m_user_id')->references('user');
+            $table->foreign('m_user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

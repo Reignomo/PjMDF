@@ -67,11 +67,11 @@ body
             <div class="card-body">
                 <div class="justify-content-center">
                     <div class="col-xs-12 col-md-12">
-                        <form id="formCadastro" method="post" action="/cliente/cadastrar">
+                        <form id="formCadastro" method="post" action="/addGrupoFamiliar/insert">
                             @csrf
                             <div class="form-group">
                                 <label for="nomeFamilia" class="text-secondary">Nome da familia</label>
-                                <input type="text" name="nomeFamilia" class="form-control" id="nomeFamilia" aria-describedby="nomehelp" placeholder="Digite o nome da familia">
+                                <input type="text" maxlength="30" name="nomeFamilia" class="form-control" id="nomeFamilia" aria-describedby="nomehelp" placeholder="Digite o nome da familia">
                             </div>
                            
                             <div class="form-group">
@@ -88,7 +88,7 @@ body
                             </div>
                             <div class="form-group">
                                 <label for="descricaoFamilia" class="text-secondary">Descrição</label>
-                                <textarea type="text" name="descricaoFamilia" class="form-control" id="descricaoFamilia" aria-describedby="descricaohelp" placeholder="Descreva sua familia"></textarea>
+                                <textarea type="text" maxlength="60" name="descricaoFamilia" class="form-control" id="descricaoFamilia" aria-describedby="descricaohelp" placeholder="Descreva sua familia"></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="imgUp">

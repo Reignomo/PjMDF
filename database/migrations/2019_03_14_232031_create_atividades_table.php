@@ -17,7 +17,7 @@ class CreateAtividadesTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->integer('a_familia_id')->unsigned();
-            $table->foreign('a_familia_id')->references('id')->on('familia');
+            $table->foreign('a_familia_id')->references('id')->on('familias');
             $table->integer('a_user_id')->nullable()->unsigned();
             $table->foreign('a_user_id')->references('id')->on('users');
             $table->timestamps();
