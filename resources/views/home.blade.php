@@ -2,8 +2,15 @@
 @section('body')
 <style>
     .img-card-family{
-        width:220px;
-        border-radius:5%;
+        width:440px;
+        height:220px;
+        border-radius:1%;
+        
+    }
+        @media (max-width: 600px) { 
+        .img-card-family {
+        background-position: center center;
+        }
     }
     .img-card-atividades{
         border-radius:50%;
@@ -18,10 +25,10 @@
     <div class="bs-callout bs-callout-primary bg-white" style="margin-bottom:60px;margin-top:5px;">
         <div class="card-body">
             <div class="row">
-                <div class="col-xs-12 col-md-3">
-                    <img src="/img/familiaExemple.jpg" class="img-card-family img-thumbnail">
+                <div class="col-xs-12 col-md-6">
+                    <div class="img-card-family img-thumbnail shadow" style="background-image: url(<?php $foo ='/img/familiaExemple.jpg'; echo $foo; ?>);"></div>
                 </div>
-                <div class="col-xs-12 col-md-5">
+                <div class="col-xs-12 col-md-3">
                     <h3 class="card-title text-primary">Nome da familia</h3>
                     <div class="text-secondary">
                         <p><b>Quantidade de membros:</b> 25</p>
@@ -29,7 +36,7 @@
                         <p><b>Descrição:</b> Familia pastel.</p>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-4 text-center">
+                <div class="col-xs-12 col-md-3 text-center">
                     <span class="badge badge-primary full">Skills</span>
                     <span class="badge badge-secondary full">PHP 7 <i class="fab fa-php"></i></span>
                     <span class="badge badge-secondary full">Laravel 5.6 <i class="fab fa-laravel"></i></span>
