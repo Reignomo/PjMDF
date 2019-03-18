@@ -2,13 +2,23 @@
 @section('body')
 <style>
     .card-familia{
+        background-size: cover;
         height:200px;
+        opacity:0.6;
+    }
+    .card-familia:hover{
+        opacity:1.0;
+        transition:0.4s;
+        text-decoration:none; 
     }
     .vertical-center {
-    display: flex;
-    align-items: center; //centraliza horizontalmente
-    justify-content: center; //cetraliza verticalmente
-}
+        display: flex;
+        align-items: center; //centraliza horizontalmente
+        justify-content: center; //cetraliza verticalmente
+    }
+    #img-familias{
+        background-position: center center;
+    }
 </style>
     <div class="card border" style="margin-bottom:60px">
         <div class="card-body">
@@ -23,20 +33,21 @@
             </div>
         </div>
     </div>
-
+    <h2 class="text-primary">Grupos familiares</h2>
     <div class="jumbotron">
          <div class="card-deck">
          @foreach($familias as $familia)
-            <div class="card border-secondary mb-3 card-familia full centered" style="max-width: 18rem;">
-                <div class="card-body vertical-center">
-                    <a href=""class="centered card-text text-secondary">{{ $familia->nome }}</a>
+            <a href="/grupoFamiliar/{{ $familia->id }}"class="card border-secondary mb-3 card-familia full centered" id="img-familias" style="max-width: 18rem; background-image: url('/storage/{{ $familia->imagem }}');">
+                <div class="card-body vertical-center centered text-secondary">
+                    <p id="title" class="text-uppercase text-white"><b>{{ $familia->nome }}</b></p>
                 </div>
-            </div>
+            </a>
+           
             @endforeach
             @if(count($familias) < 3)
             <div class="card border-secondary mb-3 card-familia  full centered" style="max-width: 18rem;">
                 <div class="card-body text-secondary vertical-center centered">
-                    <a href=""class="centered card-text text-secondary"><i class="fas fa-plus" style="font-size:60px;"></i></a>
+                    <a href="/addGrupoFamiliar"class="centered card-text text-secondary"><i class="fas fa-plus" style="font-size:60px;"></i></a>
                 </div>
             </div>
             @endif

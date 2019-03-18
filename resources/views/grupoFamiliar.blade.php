@@ -2,6 +2,7 @@
 @section('body')
 <style>
     .img-card-family{
+        background-size: cover;
         width:440px;
         height:220px;
         border-radius:1%;
@@ -24,21 +25,22 @@
     }
 </style>
     <div class="bd-example">
-        <a class="btn btn-primary" href="#!">Familia 1</a> <!-- tornar ativo o botão da familia que está aparecendo na tela -->
-        <a class="btn btn-outline-primary" href="#!">Familia 2</a>
+        @foreach($familias as $familia)
+        <a @if ($familia->id == $familiaSolicitada->id) class="btn btn-primary" @else class="btn btn-outline-primary" @endif href="/grupoFamiliar/{{ $familia->id }}">{{ $familia->nome }}</a><!-- tornar ativo o botão da familia que está aparecendo na tela -->
+        @endforeach
     </div>
     <div class="bs-callout bs-callout-primary bg-white" style="margin-bottom:60px;margin-top:5px;">
         <div class="card-body">
             <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <div class="img-card-family img-thumbnail card-body border" style="background-image: url(<?php $foo ='/img/familiaExemple.jpg'; echo $foo; ?>);"></div>
+                <div class="col-xs-12 col-md-5">
+                    <div class="img-card-family img-thumbnail card-body border" style="background-image:url('/storage/{{ $familiaSolicitada->imagem }}');"></div>
                 </div>
-                <div class="col-xs-12 col-md-3" id="info-familia">
-                    <h3 class="card-title text-primary">Nome da familia</h3>
+                <div class="col-xs-12 col-md-4" id="info-familia">
+                    <h3 class="card-title text-primary">{{ $familiaSolicitada->nome }}</h3>
                     <div class="text-secondary">
                         <p><b>Quantidade de membros:</b> 25</p>
-                        <p><b>Life Style:</b> Saudável</p>
-                        <p><b>Descrição:</b> Familia pastel.</p>
+                        <p><b>Life Style: </b>{{ $familiaSolicitada->lifestyle }}</p>
+                        <p><b>Descrição: </b> {{ $familiaSolicitada->descricao }}</p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-3 text-center">

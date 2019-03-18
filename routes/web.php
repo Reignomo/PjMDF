@@ -13,14 +13,26 @@ use App\Familia;
 
 Route::get('/', function () {
     if(Auth::check()){
-        $familias = Familia::all();
+        $familias = Familia::all()->where('f_user_creator_id', Auth::user()->id)->sortByDesc('id');
         return view('home', compact('familias'));
     }
     return view('index');
 });
 
 Route::get('/addGrupoFamiliar/{limitMax}', function ($limitMax) {
-    return view('addGrupoFamiliar', compact('limitMax'));
+    if(Auth::check()){
+        return view('addGrupoFamiliar', compact('limitMax'));
+    }
+    return view('index');
+});
+
+Route::get('/grupoFamiliar/{id}', function ($id){
+    if(Auth::check()){
+        $familias = Familia::all()->where('f_user_creator_id', Auth::user()->id)->sortByDesc('id');
+        $familiaSolicitada = Familia::find($id);
+        return view('grupoFamiliar', compact('familiaSolicitada','familias'));
+    }
+    return view('index');
 });
 
 Route::get('/grupoFamiliar','ControllerFamilia@index');

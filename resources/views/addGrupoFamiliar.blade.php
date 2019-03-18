@@ -74,7 +74,7 @@ body
             <div class="card-body">
                 <div class="justify-content-center">
                     <div class="col-xs-12 col-md-12">
-                        <form id="formCadastro" method="post" action="/addGrupoFamiliar/insert">
+                        <form id="formCadastro" method="post" action="/addGrupoFamiliar/insert" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="nomeFamilia" class="text-secondary">Nome da familia</label>
@@ -82,15 +82,15 @@ body
                             </div>
                            
                             <div class="form-group">
-                                <select class="form-control" name="idLifestyle">
+                                <select class="form-control" name="LifestyleFamilia">
                                     <option value="" disabled selected>Escolha um lifestyle</option>
-                                    <option value="1">Fitness</option>
-                                    <option value="2">Saúdavel</option>
-                                    <option value="3">Hippie</option>
-                                    <option value="4">Religiósa</option>
-                                    <option value="5">Ativistas</option>
-                                    <option value="6">Conservadora</option>
-                                    <option value="7">Outros</option>
+                                    <option value="Fitness">Fitness</option>
+                                    <option value="Saúdavel">Saúdavel</option>
+                                    <option value="Hippie">Hippie</option>
+                                    <option value="Religiósa">Religiósa</option>
+                                    <option value="Ativistas">Ativistas</option>
+                                    <option value="Conservadora">Conservadora</option>
+                                    <option value="Outros">Outros</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -100,7 +100,7 @@ body
                             <div class="form-group">
                                 <div class="imgUp">
                                     <div class="imagePreview rounded centered row"></div>
-                                    <label class="btn btn-secondary form-control" style="margin-top:5px;" href="#!">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;"></label>
+                                    <label class="btn btn-secondary form-control" style="margin-top:5px;" href="#!">Upload<input type="file" class="uploadFile img" name="imagemFamilia" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;"></label>
                                 </div>
                             </div>    
                             <small id="fileHelp" class="form-text text-secondary" style="margin-bottom:5px;">É recomendado que você utilize o tamanho de imagem 440X240 ou dimensões proporcionais.</small>

@@ -16,8 +16,9 @@ class CreateFamiliasTable extends Migration
         Schema::create('familias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->integer('lifestyle'); #1 - Fitness, 2 - Saúdavel, 3 - Hippie, 4 - Religiósa, 5 - Ativistas, 6 - Conservadora, 7 - Outros
+            $table->string('lifestyle'); #1 - Fitness, 2 - Saúdavel, 3 - Hippie, 4 - Religiósa, 5 - Ativistas, 6 - Conservadora, 7 - Outros
             $table->string('descricao');
+            $table->string('imagem');
             $table->integer('f_user_creator_id')->unsigned();
             $table->foreign('f_user_creator_id')->references('id')->on('users');
             $table->timestamps();

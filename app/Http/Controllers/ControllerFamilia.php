@@ -16,9 +16,13 @@ class ControllerFamilia extends Controller
     public function index()
     {
         if(Auth::check()){
-            return view('grupoFamiliar');
+            $familias = Familia::all()->where('f_user_creator_id', Auth::user()->id)->sortByDesc('id');
+            $familiaSolicitada = Familia::all()->sortByDesc('id')->first();
+            if(count($familias) >= 1){
+                return view('grupoFamiliar', compact('familias','familiaSolicitada'));
+            }
         }
-        return redirect('/'); 
+        return redirect('/');   
     }
 
     /**
@@ -46,9 +50,11 @@ class ControllerFamilia extends Controller
             $familias = Familia::all();
             $familia = new Familia();
             if(count($familias) < $familia->qtMax){
+                $tempPath = $request->file('imagemFamilia')->store('familias','public');
                 $familia->nome = $request->input('nomeFamilia');
-                $familia->lifestyle = $request->input('idLifestyle');
+                $familia->lifestyle = $request->input('LifestyleFamilia');
                 $familia->descricao = $request->input('descricaoFamilia');
+                $familia->imagem =  $tempPath;
                 $familia->f_user_creator_id = Auth::user()->id;
                 $familia->save();
                 redirect('/grupoFamiliar');
