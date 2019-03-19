@@ -8,6 +8,9 @@
         border-radius:1%;
         
     }
+    #icon-excluir{
+        padding-top:15px;
+    }
         @media (max-width: 600px) { 
         .img-card-family {
         background-position: center center;
@@ -15,7 +18,20 @@
         #info-familia{
             margin-top:20px;
             margin-bottom:20px;
-            text-align: center;
+            text-align:center;
+        }
+        #container-atividades{
+            font-size:14px;
+        }
+        #ativadesRealizadas{
+            display: none !important;
+        }
+        #row-atividade{
+            padding-bottom:5px;
+        }
+        #icon-excluir{
+            padding:0px;
+            margin:0px;
         }
     }
     .img-card-atividades{
@@ -62,8 +78,8 @@
         <a class="btn btn-outline-primary" href="#!">Sábado</a>
         <a class="btn btn-outline-primary" href="#!">Domingo</a>
     </div>
-    <div class="container" style="margin-top:5px; margin-bottom:5px;padding-top:0px;padding-left:0px;">
-        <div class="card-body text-center">
+    <div id="container-atividades" style="margin-top:5px; margin-bottom:5px;padding-top:0px; padding-left:10px;padding-right:10px;">
+        <div class="card-body text-center" style="padding:0px">
             <div class="row border rounded bg-primary text-white">
                 <div class="col-3">
                     Atividades
@@ -75,7 +91,7 @@
                     Responsável
                 </div>
             </div>
-            <div class="row border rounded align-middle bg-white" style="min-height:50px">
+            <div class="row border rounded align-middle bg-white" id="row-atividade" style="min-height:50px;">
                 <div class="col-3 d-flex  align-items-center">
                     Sair com o Zeus
                 </div>
@@ -87,15 +103,20 @@
                         <div class="col-xs-2 col-md-3">
                             <img class="img-card-atividades" src="/img/wil.jpg">
                         </div>
-                        <div class="col-xs-2 col-md-9 text-left">
-                            <p class="text-primary d-flex align-items-center" style="margin-bottom:0px;">Evandro ignacio</p>
+                        <div class="col-xs-2 col-md-7 text-center" id="col-info-responsavel">
+                            <p class="text-primary" style="margin-bottom:0px;">Evandro ignacio</p>
                             <span class="badge badge-success">Grão mestre</span>
-                            <p class="text-secondary d-flex  align-items-center">Atividades realizadas:2211</p>
+                            <p class="text-secondary d-flex align-items-center" id="ativadesRealizadas">Atividades realizadas:2211</p>
+                        </div>
+                        <div class="col-xs-2 col-md-2" id="icon-excluir">
+                            <a href="" class="btn bg-danger centered"><i class="fas fa-trash-alt text-white"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <a class="btn btn-primary float-right" href="!#"><i class="fas fa-plus"></i></a>
+    <a class="btn btn-primary float-right" data-toggle="modal" data-target="#modalAddAtividade"><i class="fas fa-plus"></i></a>
+    @component('../componentes/modal')
+        @endcomponent
 @endSection
