@@ -15,7 +15,8 @@ class CreateMembrosTable extends Migration
     {
         Schema::create('membros', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('m_user_id')->unsigned();
+            $table->string('nome')->nullable();
+            $table->integer('m_user_id')->nullable()->unsigned();
             $table->foreign('m_user_id')->references('id')->on('users');
             $table->integer('m_familia_id')->unsigned();
             $table->foreign('m_familia_id')->references('id')->on('familias');

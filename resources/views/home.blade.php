@@ -36,7 +36,8 @@
     <h2 class="text-primary">Grupos familiares</h2>
     <div class="jumbotron">
          <div class="card-deck">
-         @foreach($familias as $familia)
+         @foreach($membros as $membro)
+         @php $familia = $familias::all()-> where('m_user_id', $membro->m_user_id); @endphp
             <a href="/grupoFamiliar/{{ $familia->id }}"class="card border-secondary mb-3 card-familia full centered" id="img-familias" style="max-width: 18rem; background-image: url('/storage/{{ $familia->imagem }}');">
                 <div class="card-body vertical-center centered text-secondary">
                     <p id="title" class="text-uppercase text-white"><b>{{ $familia->nome }}</b></p>
@@ -44,7 +45,7 @@
             </a>
            
             @endforeach
-            @if(count($familias) < 3)
+            @if(count($membros) < 3)
             <div class="card border-secondary mb-3 card-familia  full centered" style="max-width: 18rem;">
                 <div class="card-body text-secondary vertical-center centered">
                     <a href="/addGrupoFamiliar"class="centered card-text text-secondary"><i class="fas fa-plus" style="font-size:60px;"></i></a>

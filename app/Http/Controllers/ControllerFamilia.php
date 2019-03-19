@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Familia;
+use App\Membros;
 use Illuminate\Support\Facades\Auth;
 
 class ControllerFamilia extends Controller
@@ -18,8 +19,9 @@ class ControllerFamilia extends Controller
         if(Auth::check()){
             $familias = Familia::all()->where('f_user_creator_id', Auth::user()->id)->sortByDesc('id');
             $familiaSolicitada = Familia::all()->sortByDesc('id')->first();
+            $qtMembros = count(Membros::all()->where('m_familia_id', $familiaSolicitada->id));
             if(count($familias) >= 1){
-                return view('grupoFamiliar', compact('familias','familiaSolicitada'));
+                return view('grupoFamiliar', compact('familias','familiaSolicitada','qtMembros'));
             }
         }
         return redirect('/');   

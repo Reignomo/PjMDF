@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Membros;
+use App\User;
 
 class ControllerMembros extends Controller
 {
@@ -32,9 +34,25 @@ class ControllerMembros extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $idFamilia)
     {
-        //
+        $membro = new Membros();
+        if($request->input('emailMembro') != ""){
+            $user = new User();
+            $user = User::all()->where('email', $request->input('emailMembro'))->first();
+            if($user != null){
+                $membro->nome="";
+                $membro->m_user_id =  $user->id;
+                $membro->m_familia_id = $idFamilia;
+                $membro->save();
+                return redirect('/editar/grupoFamiliar/'.$idFamilia.'');
+            }
+            return redirect('/editar/grupoFamiliar/'.$idFamilia.'/error');
+        }
+        $membro->nome= $request->input('nomeMembroNaoCadastrado');
+        $membro->m_familia_id = $idFamilia;
+        $membro->save();
+        return redirect('/editar/grupoFamiliar/'.$idFamilia.'');
     }
 
     /**
@@ -68,7 +86,7 @@ class ControllerMembros extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -77,8 +95,9 @@ class ControllerMembros extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idFamilia, $idMembro)
     {
-        //
+        Membros::where('id', $idMembro)->delete();
+       return redirect('/editar/grupoFamiliar/'.$idFamilia.'');
     }
 }

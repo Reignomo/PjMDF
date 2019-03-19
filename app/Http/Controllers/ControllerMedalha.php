@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class ControllerMedalha extends Controller
 {
     /**
@@ -32,9 +33,10 @@ class ControllerMedalha extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $idFamilia)
     {
-        //
+       
+
     }
 
     /**

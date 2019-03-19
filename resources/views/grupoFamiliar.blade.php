@@ -45,7 +45,7 @@
         <a @if ($familia->id == $familiaSolicitada->id) class="btn btn-primary" @else class="btn btn-outline-primary" @endif href="/grupoFamiliar/{{ $familia->id }}">{{ $familia->nome }}</a><!-- tornar ativo o botão da familia que está aparecendo na tela -->
         @endforeach
     </div>
-    <div class="bs-callout bs-callout-primary bg-white" style="margin-bottom:60px;margin-top:5px;">
+    <div class="bs-callout bs-callout-primary bg-white" style="margin-bottom:5px;margin-top:5px;">
         <div class="card-body">
             <div class="row">
                 <div class="col-xs-12 col-md-5">
@@ -54,7 +54,7 @@
                 <div class="col-xs-12 col-md-4" id="info-familia">
                     <h3 class="card-title text-primary">{{ $familiaSolicitada->nome }}</h3>
                     <div class="text-secondary">
-                        <p><b>Quantidade de membros:</b> 25</p>
+                        <p><b>Quantidade de membros:</b> {{ $qtMembros }} </p>
                         <p><b>Life Style: </b>{{ $familiaSolicitada->lifestyle }}</p>
                         <p><b>Descrição: </b> {{ $familiaSolicitada->descricao }}</p>
                     </div>
@@ -68,8 +68,9 @@
             </div>
         </div>
     </div>
+    <a class="btn btn-primary float-right text-white" href="/editar/grupoFamiliar/{{ $familiaSolicitada->id }}" ><i class="fas fa-edit"></i></a>
 
-    <div class="bd-example">
+    <div class="bd-example" style="margin-top:60px;">
         <a class="btn btn-primary" href="#!">Segunda</a> <!-- tornar ativo o botão do dia da semana atual -->
         <a class="btn btn-outline-primary" href="#!">Terça</a>
         <a class="btn btn-outline-primary" href="#!">Quarta</a>
@@ -116,7 +117,7 @@
             </div>
         </div>
     </div>
-    <a class="btn btn-primary float-right" data-toggle="modal" data-target="#modalAddAtividade"><i class="fas fa-plus"></i></a>
-    @component('../componentes/modal')
-        @endcomponent
+    <a class="btn btn-primary float-right text-white" data-toggle="modal" data-target="#modalAddAtividade"><i class="fas fa-plus"></i></a>
+    @component('../componentes/modalAtividade')
+    @endcomponent
 @endSection

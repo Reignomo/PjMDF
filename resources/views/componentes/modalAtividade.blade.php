@@ -12,11 +12,11 @@
           @csrf
             <div class="form-group">
                 <label class="text-secondary" for="tituloAtividade">Titulo da atividade</label>
-                <input type="text" class="form-control" id="tituloAtividade" requeired name="tituloAtividade">
+                <input type="text" class="form-control" id="tituloAtividade" required name="tituloAtividade">
             </div>
             <div class="form-group">
                 <label class="text-secondary" for="descricaoAtividade">Titulo da atividade</label>
-                <textarea type="text" class="form-control" id="descricaoAtividade" requeired name="descricaoAtividade"></textarea>
+                <textarea type="text" class="form-control" id="descricaoAtividade" required name="descricaoAtividade"></textarea>
             </div>
             <div class="form-group">
                <select class="form-control" required>
