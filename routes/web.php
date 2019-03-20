@@ -31,13 +31,18 @@ Route::get('/addGrupoFamiliar/{limitMax}', function ($limitMax) {
 });
 
 Route::get('/grupoFamiliar/{id}', function ($id){
+
     if(Auth::check()){
-        $familias = Familia::all()->where('f_user_creator_id', Auth::user()->id)->sortByDesc('id');
-        $familiaSolicitada = Familia::find($id);
-        $qtMembros = count(Membros::all()->where('m_familia_id', $familiaSolicitada->id));
-        return view('grupoFamiliar', compact('familiaSolicitada','familias','qtMembros'));
+        $familias = new Familia();
+        $membros = Membros::all()->where('m_user_id', Auth::user()->id)->sortByDesc('id');
+        if(count($membros) >= 1){
+            $membro = Membros::all()->where('m_user_id', Auth::user()->id)->sortByDesc('id')->first();
+            $familiaSolicitada = $familias::all()->where('id', $id)->first();
+            $qtMembros = count(Membros::all()->where('m_familia_id', $familiaSolicitada->id));
+            return view('grupoFamiliar', compact('familias','familiaSolicitada','qtMembros'), compact('membros'));
+        }
     }
-    return view('index');
+    return redirect('/');
 });
 
 Route::get('/editar/grupoFamiliar/{id}', function($id){

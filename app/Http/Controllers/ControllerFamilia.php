@@ -17,11 +17,13 @@ class ControllerFamilia extends Controller
     public function index()
     {
         if(Auth::check()){
-            $familias = Familia::all()->where('f_user_creator_id', Auth::user()->id)->sortByDesc('id');
-            $familiaSolicitada = Familia::all()->sortByDesc('id')->first();
-            $qtMembros = count(Membros::all()->where('m_familia_id', $familiaSolicitada->id));
-            if(count($familias) >= 1){
-                return view('grupoFamiliar', compact('familias','familiaSolicitada','qtMembros'));
+            $familias = new Familia();
+            $membros = Membros::all()->where('m_user_id', Auth::user()->id)->sortByDesc('id');
+            if(count($membros) >= 1){
+                $membro = Membros::all()->where('m_user_id', Auth::user()->id)->sortByDesc('id')->first();
+                $familiaSolicitada = $familias::all()->where('id', $membro->m_familia_id)->first();
+                $qtMembros = count(Membros::all()->where('m_familia_id', $familiaSolicitada->id));
+                return view('grupoFamiliar', compact('familias','familiaSolicitada','qtMembros'), compact('membros'));
             }
         }
         return redirect('/');   
@@ -51,6 +53,7 @@ class ControllerFamilia extends Controller
         if(Auth::check()){
             $familias = Familia::all();
             $familia = new Familia();
+            $membros = new Membros();
             if(count($familias) < $familia->qtMax){
                 $tempPath = $request->file('imagemFamilia')->store('familias','public');
                 $familia->nome = $request->input('nomeFamilia');
@@ -59,7 +62,11 @@ class ControllerFamilia extends Controller
                 $familia->imagem =  $tempPath;
                 $familia->f_user_creator_id = Auth::user()->id;
                 $familia->save();
-                redirect('/grupoFamiliar');
+                $idFamilia = Familia::all()->sortByDesc('create_at')->first();
+                $membros->m_user_id = Auth::user()->id;
+                $membros->m_familia_id = $idFamilia->id;
+                $membros->save();
+               
             }
             else{
                 $limitMax = true;

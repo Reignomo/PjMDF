@@ -41,7 +41,8 @@
     }
 </style>
     <div class="bd-example">
-        @foreach($familias as $familia)
+        @foreach($membros as $membro)
+        @php $familia = $familias::all()->where('id', $membro->m_familia_id)->first(); @endphp
         <a @if ($familia->id == $familiaSolicitada->id) class="btn btn-primary" @else class="btn btn-outline-primary" @endif href="/grupoFamiliar/{{ $familia->id }}">{{ $familia->nome }}</a><!-- tornar ativo o botão da familia que está aparecendo na tela -->
         @endforeach
     </div>

@@ -37,7 +37,7 @@
     <div class="jumbotron">
          <div class="card-deck">
          @foreach($membros as $membro)
-         @php $familia = $familias::all()-> where('m_user_id', $membro->m_user_id); @endphp
+         @php $familia = $familias::all()->where('id', $membro->m_familia_id)->first(); @endphp
             <a href="/grupoFamiliar/{{ $familia->id }}"class="card border-secondary mb-3 card-familia full centered" id="img-familias" style="max-width: 18rem; background-image: url('/storage/{{ $familia->imagem }}');">
                 <div class="card-body vertical-center centered text-secondary">
                     <p id="title" class="text-uppercase text-white"><b>{{ $familia->nome }}</b></p>
