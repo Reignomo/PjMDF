@@ -63,7 +63,7 @@ class ControllerFamilia extends Controller
     public function store(Request $request)
     {
         if(Auth::check()){
-            $familias = Familia::all();
+            $familias = Membros::all()->where('m_user_id', Auth::user()->id);
             $familia = new Familia();
             $membros = new Membros();
             if(count($familias) < $familia->qtMax){

@@ -91,6 +91,9 @@ Route::get('/editar/grupoFamiliar/{idFamilia}/error',function($idFamilia){
     }
     return view('index');
 });
+Route::get('/about', function(){
+    return view('about');
+});
 
 Route::post('/editar/grupoFamiliar/{idFamilia}','ControllerMembros@store');
 Route::get('/grupoFamiliar','ControllerFamilia@index');

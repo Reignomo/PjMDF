@@ -15,7 +15,7 @@
                 <input type="text" class="form-control" id="tituloAtividade" required name="tituloAtividade">
             </div>
             <div class="form-group">
-                <label class="text-secondary" for="descricaoAtividade">Titulo da atividade</label>
+                <label class="text-secondary" for="descricaoAtividade">Descrição atividade</label>
                 <textarea type="text" class="form-control" id="descricaoAtividade" required name="descricaoAtividade"></textarea>
             </div>
             <div class="form-group">
