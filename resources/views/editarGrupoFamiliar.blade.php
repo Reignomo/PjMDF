@@ -9,14 +9,22 @@
         <h2 class="text-primary">Familia {{ $familia->nome }}</h2>
         <div class="card border bg-white" style="margin-bottom:30px;">
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="/editar/grupoFamiliar/{{ $familia->id }}/update" id="formEditar" method="POST">
+                    @csrf
                     <div class="form-group">
                         <label class="text-secondary" for="nomeFamilia">Novo nome da familia</label>
                         <input id="nomeFamilia" class="form-control" type="text" name="nomeFamilia">
                     </div>
                     <div class="form-group">
-                        <select class="form-control">
-                            <option value=""  selected disabled>Escolha um lifestyle</option>
+                        <select class="form-control" name="LifestyleFamilia">
+                            <option value="" disabled selected>Escolha um lifestyle</option>
+                            <option value="Fitness">Fitness</option>
+                            <option value="Saúdavel">Saúdavel</option>
+                            <option value="Hippie">Hippie</option>
+                            <option value="Religiósa">Religiósa</option>
+                            <option value="Ativistas">Ativistas</option>
+                            <option value="Conservadora">Conservadora</option>
+                            <option value="Outros">Outros</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -24,6 +32,7 @@
                         <textarea id="nomeFamilia" class="form-control" name="descricaoFamilia"></textarea>
                     </div>
                 </form>
+                <button class="btn btn-primary float-right" type="submit" form="formEditar" value="Submit">Salvar</button>
             </div>
         </div>
         <h2 class="text-primary">Membros da familia</h2>

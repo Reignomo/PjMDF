@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Familia;
+use App\Atividade;
+use Illuminate\Support\Facades\Auth;
 
 class ControllerAtividade extends Controller
 {
@@ -32,9 +35,19 @@ class ControllerAtividade extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $idFamilia)
     {
-        //
+        if(Auth::check()){
+            $atividade = new Atividade();
+            $atividade->title = $request->input('tituloAtividade');
+            $atividade->dia = $request->input('diaAtividade');
+            $atividade->descricao = $request->input('descricaoAtividade');
+            $atividade->a_familia_id = $idFamilia;
+            $atividade->a_membro_id = $request->input('idMembroAtividade');
+            $atividade->save();
+            return redirect('/grupoFamiliar/'.$idFamilia.'/dia/'.$request->input('diaAtividade').'');
+        }
+        return redirect('/'); 
     }
 
     /**
@@ -77,8 +90,12 @@ class ControllerAtividade extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idAtividade, $idFamilia)
     {
-        //
+        if(Auth::check()){
+           Atividade::where('id', $idAtividade)->delete();
+           return redirect('grupoFamiliar/'.$idFamilia.'');
+        }
+        return redirect('/'); 
     }
 }

@@ -2,6 +2,8 @@
 use App\Familia;
 use App\Membros;
 use App\User;
+use Carbon\Carbon;
+use App\Atividade;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +17,6 @@ use App\User;
 
 Route::get('/', function () {
     if(Auth::check()){
-        #$familias = Familia::all()->where('f_user_creator_id', Auth::user()->id)->sortByDesc('id');
         $familias = new Familia();
         $membros = Membros::all()->where('m_user_id', Auth::user()->id)->sortByDesc('id');
         return view('home', compact('familias','membros'));
@@ -33,13 +34,40 @@ Route::get('/addGrupoFamiliar/{limitMax}', function ($limitMax) {
 Route::get('/grupoFamiliar/{id}', function ($id){
 
     if(Auth::check()){
+        setlocale(LC_TIME, 'portuguese'); 
+        date_default_timezone_set('America/Sao_Paulo');
+        $now = new Carbon();
+        $now->day;
+        $dia = utf8_encode($now->formatLocalized('%A'));
         $familias = new Familia();
+        $membrosHelper = new Membros();
+        $userHelper = new User();
         $membros = Membros::all()->where('m_user_id', Auth::user()->id)->sortByDesc('id');
         if(count($membros) >= 1){
             $membro = Membros::all()->where('m_user_id', Auth::user()->id)->sortByDesc('id')->first();
             $familiaSolicitada = $familias::all()->where('id', $id)->first();
+            $atividades = Atividade::all()->where('a_familia_id', $familiaSolicitada->id)->where('dia',$dia);
             $qtMembros = count(Membros::all()->where('m_familia_id', $familiaSolicitada->id));
-            return view('grupoFamiliar', compact('familias','familiaSolicitada','qtMembros'), compact('membros'));
+            return view('grupoFamiliar', compact('familias','familiaSolicitada','qtMembros'), compact('membros','membrosHelper','userHelper','atividades','dia'));
+        }
+    }
+    return redirect('/');
+});
+
+Route::get('/grupoFamiliar/{id}/dia/{dia}', function ($id, $diaSemana){
+
+    if(Auth::check()){
+        $dia = $diaSemana;
+        $familias = new Familia();
+        $membrosHelper = new Membros();
+        $userHelper = new User();
+        $membros = Membros::all()->where('m_user_id', Auth::user()->id)->sortByDesc('id');
+        if(count($membros) >= 1){
+            $membro = Membros::all()->where('m_user_id', Auth::user()->id)->sortByDesc('id')->first();
+            $familiaSolicitada = $familias::all()->where('id', $id)->first();
+            $atividades = Atividade::all()->where('a_familia_id', $familiaSolicitada->id)->where('dia',$dia);
+            $qtMembros = count(Membros::all()->where('m_familia_id', $familiaSolicitada->id));
+            return view('grupoFamiliar', compact('familias','familiaSolicitada','qtMembros'), compact('membros','membrosHelper','userHelper','atividades','dia'));
         }
     }
     return redirect('/');
@@ -69,6 +97,9 @@ Route::get('/grupoFamiliar','ControllerFamilia@index');
 Route::get('/addGrupoFamiliar','ControllerFamilia@create');
 Route::post('/addGrupoFamiliar/insert','ControllerFamilia@store');
 Route::get('/editar/grupoFamiliar/{idFamilia}/excluir/{idMembro}', 'ControllerMembros@destroy');
+Route::post('/grupoFamiliar/{idFamilia}/addAtividade', 'ControllerAtividade@store');
+Route::get('/grupoFamiliar/{idFamilia}/excluirAtividade/{idAtividade}', 'ControllerAtividade@destroy');
+Route::post('/editar/grupoFamiliar/{idFamilia}/update','ControllerFamilia@update');
 Auth::routes();
 
 

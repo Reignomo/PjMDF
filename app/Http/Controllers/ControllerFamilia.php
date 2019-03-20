@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Familia;
 use App\Membros;
+use App\User;
+use App\Atividade;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class ControllerFamilia extends Controller
@@ -17,17 +20,26 @@ class ControllerFamilia extends Controller
     public function index()
     {
         if(Auth::check()){
+            setlocale(LC_TIME, 'portuguese'); 
+            date_default_timezone_set('America/Sao_Paulo');
+            $now = new Carbon();
+            $now->day;
+            $dia = utf8_encode($now->formatLocalized('%A'));
             $familias = new Familia();
+            $membrosHelper = new Membros();
+            $userHelper = new User();
             $membros = Membros::all()->where('m_user_id', Auth::user()->id)->sortByDesc('id');
             if(count($membros) >= 1){
                 $membro = Membros::all()->where('m_user_id', Auth::user()->id)->sortByDesc('id')->first();
                 $familiaSolicitada = $familias::all()->where('id', $membro->m_familia_id)->first();
+                $atividades = Atividade::all()->where('a_familia_id', $familiaSolicitada->id)->where('dia',$dia);
                 $qtMembros = count(Membros::all()->where('m_familia_id', $familiaSolicitada->id));
-                return view('grupoFamiliar', compact('familias','familiaSolicitada','qtMembros'), compact('membros'));
+                return view('grupoFamiliar', compact('familias','familiaSolicitada','qtMembros'), compact('membros','membrosHelper','userHelper','atividades','dia'));
             }
         }
         return redirect('/');   
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -62,7 +74,7 @@ class ControllerFamilia extends Controller
                 $familia->imagem =  $tempPath;
                 $familia->f_user_creator_id = Auth::user()->id;
                 $familia->save();
-                $idFamilia = Familia::all()->sortByDesc('create_at')->first();
+                $idFamilia = Familia::all()->sortByDesc('id')->first();
                 $membros->m_user_id = Auth::user()->id;
                 $membros->m_familia_id = $idFamilia->id;
                 $membros->save();
@@ -106,9 +118,10 @@ class ControllerFamilia extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idFamilia)
     {
-        //
+        Familia::where('id', $idFamilia)->update(["nome" => $request->input('nomeFamilia'), "lifestyle" => $request->input('LifestyleFamilia'), "descricao" => $request->input('descricaoFamilia')]);
+        return redirect('/editar/grupoFamiliar/'.$idFamilia.'');
     }
 
     /**
