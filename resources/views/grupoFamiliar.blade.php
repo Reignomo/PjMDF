@@ -118,6 +118,13 @@
                 </div>
             </div>
             @endforeach
+            @if(count($atividades)< 1)
+            <div class="row border rounded" style="margin-bottom:5px;">
+                <div class="col-12">
+                    <p class="text-secondary text-center" style="margin-top:10px;">Não há atividades alocadas para esse dia</p>
+                </div>
+            </div>
+            @endif
         </div>
         <a class="btn btn-primary float-right text-white" data-toggle="modal" data-target="#modalAddAtividade"><i class="fas fa-plus"></i></a>
     </div>

@@ -18,7 +18,7 @@
         </div>
       </li>
       <li @if($current =="about") class="nav-item active" @else class="nav-item" @endif>
-        <a class="nav-link" href="/about">about</a>
+        <a class="nav-link" href="/about">About</a>
       </li>
       @endguest
     </ul>
