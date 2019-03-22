@@ -4,7 +4,7 @@ The MDF is a responsive web application for family activities control.
 
 
 
-## Contributing guide
+## Settings guide
 
 - 1  ```Composer.phar install```
 - 2  copy ev. and change the database credentials https://github.com/laravel/laravel/blob/master/.env.example 
